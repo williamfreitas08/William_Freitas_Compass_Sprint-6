@@ -1,0 +1,174 @@
+### Escrevendo Cenários de teste na API ServeRest
+
+##Enpoint - /login##
+POST - Fazer login com sucesso na ServeRest
+- Dados Válidos
+- Ter um usuário cadastrado
+- A requisição deve voltar um status 200
+
+POST - Fazer login com um usuário inválido na API ServeRest
+- Utilizar dados inválidos
+- Não pode estar cadastrado
+- A requisição deve voltar um status 400
+- Validar mensagem "Email e/ou senha inválidos"
+
+##Endpoint - /usuarios##
+GET - No endpoint /usuarios da api ServeRest deve listar todos os usuários
+- Dados válidos
+- A requisição deve voltar um status 200
+
+POST - Criar um usuário novo dentro da api ServeRest em /usuarios
+- Dados válidos
+- O usuário não deve estar cadastrado
+- O usuário deve ter e-mail e senha
+- A requisição deve voltar um status 201
+
+POST - Tentar criar usuário com dados inválidos na API ServeRest em /usuarios
+- Utilizar dados inválidos no cadastro
+- O usuário pode já estar cadastrado
+- A requisição deve voltar um status 400
+- Validar mensagem "Este email já está sendo usado"
+
+POST - No endpoint /usuarios tentar realizar novo cadastrar usuario com e-mail cadastrado
+- Informar e-mail cadastrado
+- A requisição deve voltar um status 400
+
+
+GET - Realizar buscar no endpoint /usuarios/{_id} com usuário de ID não cadastrado
+- Informar ID inválido
+- Validar mensagem "Usuário não encontrado"
+- A requisição deve voltar um status 400
+
+DELETE - Excluir o usuário com id "0uxuPY0cbmQhpEz1"
+- Validar que o usuário com id 0uxuPY0cbmQhp existe
+- O usuário com id 0uxuPY0cbmQhpEz1 não deve ter um carrinho cadastrado
+- A requisição deve voltar um status 200
+
+DELETE - Excluir o usuário com carrinho cadastrado
+- Validar que o usuário com id 0uxuPY0cbmQhp existe
+- O usuário com id 0uxuPY0cbmQhpEz1 tem um carrinho cadastrado
+- A requisição deve voltar um status 400
+- Validar mensagem "Não é permitido excluir usuário com carrinho cadastrado"
+
+PUT - Tentar editar usuário com id "0uxuPY0cbmQhpEz1"
+- Utilizar dados válidos para edição 
+- Preciso ter certeza que o usuário já esta cadastrado
+- A requisição deve voltar um status 200
+- Validar mensagem "Registro alterado com sucesso"
+
+PUT - Tentar editar usuário não cadastrado com id inválido
+- Utilizar ID inválido para solicitar edição 
+- Realizar cadastro com dados válidos
+- A requisição deve voltar um status 201
+- Validar mensagem "Cadastro realizado com sucesso"
+
+PUT - Tentar editar usuário pelo id com e-mail já cadastrado
+- Informar no campo e-mail um e-mail já cadastrado 
+- A requisição deve voltar um status 400
+- Validar mensagem "Este email já está sendo usado"
+
+##Endpoint - /produtos##
+GET - Listar produtos cadastrados
+- Dados validos
+- A requisição deve voltar um status 200
+
+POST - Cadastrar novos produtos
+- Informar dados válidos
+- Cadastrar nome não existente 
+- A requisição deve voltar um status 200
+- Validar mensagem "Cadastro realizado com sucesso"
+- Validar toker ausente, inválido ou expirado status code 401
+- Validar Rota para administradores(Administrador = true) status code 403
+
+POST - Solicitar cadastro de novo produtos com nome já existente
+- Informar nome do produto já existente no cadastro de produtos 
+- A requisição deve voltar um status 400
+- Validar mensagem "Já existe produto com esse nome"
+
+GET - Buscar produtos por ID seguindo o endpoint /produtos​/{_id}
+- Informar o ID válido do produto
+- A requisição deve voltar um status 200
+
+GET - Buscar produtos por com ID inexistente 
+- Informar o ID inválido do produto
+- A requisição deve voltar um status 400
+- Validar mensagem "Produto não encontrado"
+
+DELETE - Excluir produto seguindo o endpoint /produtos​/{_id}
+- Informar o ID válido do produto para ser excluido
+- A requisição deve voltar um status 200
+- Validar mensagem "Registro excluído com sucesso | Nenhum registro excluído"
+- Validar toker ausente, inválido ou expirado status code 401
+- Validar Rota para administradores(Administrador = true) status code 403
+
+DELETE - Excluir produto que faz parte de carrinho /produtos​/{_id}
+- Informar o ID válido do produto existente em carrinho
+- A requisição deve voltar um status 400
+- Validar mensagem "Não é permitido excluir produto que faz parte de carrinho"
+
+PUT - Editar produtos cadastrados
+- Informar ID do produto existente
+- A requisição deve voltar um status 200
+- Validar mensagem "Registro alterado com sucesso"
+- Validar toker ausente, inválido ou expirado status code 401
+- Validar Rota para administradores(Administrador = true) status code 403
+
+PUT - Editar produtos não cadastrados
+- Informar ID do produto inexistente
+- Realizar cadastro do produto
+- A requisição deve voltar um status 201
+- Validar mensagem "Cadastro realizado com sucesso"
+
+PUT - Editar produtos com nome já cadastrados
+- Informar ID válido do produto
+- Realizar cadastro do produto com nome já cadastrado
+- A requisição deve voltar um status 400
+- Validar mensagem "Já existe produto com esse nome"
+
+##Endpoint - /carrinhos##
+GET - Listar carrinhos cadastrados
+- Buscar carrinhos(produtos) existentes
+- Verificar carrinhos (produtos) pelo ID usuários
+- A requisição deve voltar um status 200
+
+POST - Cadastrar carrinho endpoint /carrinhos
+- Informar ID produto e quantidade no carrinho
+- A requisição deve voltar um status 201
+- Validar toker ausente, inválido ou expirado status code 401
+
+POST - Cadastrar mais de um carrinho com ALGO DE ERRAOD
+- Informar ID produto duplicado no carrinho
+- Informar mais de um carrinho por ID usuário
+- Informar ID de produto inexistente
+- Informar ID produto sem quantidade suficiente
+- Informar ID de produto inexistente
+- A requisição deve voltar um status 400
+
+GET - Buscar pelo endpoint /carrinhos/{_id}
+- Informar o ID do carrinho
+- A requisição deve voltar um status 200
+
+GET - Buscar carrinho com ID incorreto no endpoint /carrinhos/{_id}
+- Informar o ID inválido do carrinho
+- A requisição deve voltar um status 400
+
+DELETE - Excluir carrinho ao finalizar comprar no carrinhos pelo endpoint /carrinhos/concluir-compra
+- Informar ID válido do carrinho
+- Informar ID do Usuário que concluiu carrinho
+- A requisição deve voltar um status 200
+- Validar mensagem "Registro excluído com sucesso | Não foi encontrado carrinho para esse usuário"
+
+DELETE - Excluir carrinho ao finalizar comprar no carrinhos com token ausente
+- Informar token ausente, inválido ou expirado
+- A requisição deve voltar um status 401
+
+DELETE - Excluir carrinho e retornar produtos para estoque pelo endpoint /carrinhos/cancelar-compra
+- Informar ID carrinho para realizar exclusão ou cancelamento
+- Informar ID do produto que receberá os produtos cancelados do carrinho
+- Informar token do usuário que excluiu o carrinho
+- A requisição deve voltar um status 200
+
+DELETE - Excluir carrinho e retornar produtos para estoque com token inválido
+- Informar token ausente, inválido ou expirado
+- Informar ID de usuario inexistente
+- A requisição deve voltar um status 400

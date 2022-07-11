@@ -1,0 +1,26 @@
+{
+    "user_valido":{
+        "nome": "Fulano da Silva",
+        "email": "beltrano@qa.com.br",
+        "password": "teste",
+        "administrador": "true"
+    },
+    "user_invalido":{
+        "nome": "invalido Fulano",
+        "email": "beltrano@qa.com.br",
+        "password": "teste",
+        "administrador": "true"
+    },
+    "user_sem-senha":{
+        "nome": "adelma da Silva",
+        "email": "adelma@gmail.com",
+        "password": "",
+        "administrador": "true"
+    },
+    "user_sem-email":{
+        "nome": "maria olegario",
+        "email": "",
+        "password": "12367",
+        "administrador": "true"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "user_valido": {
+        "email":"william@gmail.com",
+        "senha":"12345"
+    },
+    "user_invalido": {
+        "email":"invaldwilliam@gmail.com",
+        "senha":"teste12345"
+    },
+    "user_sem_senha": {
+        "email":"william@gmail.com",
+        "senha":""
+    },
+    "user_sem_email": {
+        "email":"",
+        "senha":"12345"
+    }
+}
