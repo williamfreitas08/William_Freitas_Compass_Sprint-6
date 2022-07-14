@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       Keywords e Variaveis para Ações do endpoint carrinhos
-Library             RequestsLibrary
+Resource            ../support/base.robot
 
 *** Variables ***
 ${token_auth}            

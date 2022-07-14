@@ -1,10 +1,7 @@
 *** Settings ***
 Documentation             Keywords e Variaveis para Ações do endpoint produtos
-Library                   RequestsLibrary
 
-*** Variables ***
-${token_auth}        
-${idproduto}             0uxuPY0cbmQhpEz1
+Resource                  ../support/base.robot
 
 *** Keywords ***
 GET Endpoint /produtos
@@ -20,8 +17,7 @@ GET Buscar /produtos/_id
 
 POST Endpoint /produtos
     &{header}                   Create Dictionary       Authorization=${token_auth}
-    &{payload}                  Create Dictionary       nome=MouseTech      preco=400     descricao=Mouse    quantidade=100
-    ${response}                 POST On Session         serverest       /produtos/      data=&{payload}      headers=&{header}            
+    ${response}                 POST On Session         serverest       /produtos/      json=&{payload}      headers=&{header}            
     Log to Console              Response: ${response.content}
     Set Global Variable         ${response}
 
@@ -33,8 +29,7 @@ DELETE Endpoint /produtos
 
 PUT Endpoint /produtos/_id
     &{header}               Create Dictionary        Authorization=${token_auth}
-    &{payload}              Create Dictionary        nome=CoolerRazer        preco=300     descricao=Cooler      quantidade=13
-    ${response}             PUT On Session           serverest           /produtos/${idproduto}          json=&{payload}
+    ${response}             PUT On Session           serverest           /produtos/${id_produto}          json=&{payload}      headers=&{header} 
     Log to Console          Response: ${response.content}
     Set Global Variable     ${response}
 
@@ -46,6 +41,7 @@ Validar Quantidade Produto "${quantidade}"
     Should Be Equal         ${response.json()["quantidade"]}    ${quantidade}
 
 Criar Um Produto e Armazenar ID
+    Criar Produto
     POST Endpoint /produtos
     Validar Ter Criado Produto
     ${id_produto}               Set Variable               ${response.json()["_id"]}
