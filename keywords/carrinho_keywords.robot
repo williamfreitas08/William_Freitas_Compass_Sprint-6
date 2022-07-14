@@ -32,7 +32,8 @@ DELETE Endpoint /carrinhos/concluir-compra
     ${response}             DELETE on Session      serverest       /carrinhos/concluir-compra      headers=${header}
     Log to Console          Response: ${response.content}
     Set Global Variable     ${response}
-
+    
+#aprendir com o joão
 Criando Carrinho
     ${json}                     Importar JSON Estatico              json_carrinho.json
     ${payload}                  Set Variable                        ${json}

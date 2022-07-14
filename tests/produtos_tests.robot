@@ -12,7 +12,7 @@ Cenario: GET Todos os produtos 200
     Criar Sessao
     GET Endpoint /produtos
     Validar Status Code "200"
-    Validar Quantidade Produto "${5}"
+    Validar Quantidade Produto "${7}"
 
 Cenario: GET Buscar /usuarios/_id
     [Tags]      GETPRODUTOID
