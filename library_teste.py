@@ -12,5 +12,5 @@ def Get_Endpoint_Usuarios_Tantas_Vezes(vezes):
 def Pegar_Quantidade_De_Usuarios_Cadastrados():
     r = req.get("http://localhost:3000/usuarios")
     requests_json = r.json()
-
+    
     return requests_json["quantidade"]
