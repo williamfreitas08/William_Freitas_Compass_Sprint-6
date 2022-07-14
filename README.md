@@ -1,7 +1,7 @@
 # Challenge da Sprint 6 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png" width="120" height="120"/>
 
 ## Sobre o Projeto
-O presente repositório foi utilizado para a realização de teste automatizados para a API ServeRest referente a Sprint 5 do Programa de Bolsa da Compass.UOL. Foram automatizados os Endpoints abaixo:
+O presente repositório foi utilizado para a realização de teste automatizados para a API ServeRest referente a Sprint 6 do Programa de Bolsa da Compass.UOL. Foram automatizados os Endpoints abaixo:
 - `Login` - Método: POST;
 - `Usuários` - Métodos: GET, POST, DELETE, PUT;
 - `Produtos` - Métodos: GET, POST, DELETE, PUT;

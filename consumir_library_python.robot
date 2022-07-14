@@ -10,3 +10,7 @@ Teste Library 1
 Teste Library 2
     ${users}                Pegar Quantidade De Usuarios Cadastrados
     Log To Console          ${users}
+
+Teste Library 3
+    ${users}                Pegar Quantidade De Usuarios cadastrados
+    Log To Console          ${users}
